@@ -590,6 +590,7 @@
       "@id": "epcis:ilmd"
     },
     "EPCISDocument": "epcis:EPCISDocument",
+    "EPCISQueryDocument": "epcis:EPCISQueryDocument",
     "epcisHeader": "epcis:epcisHeader",
     "epcisBody": "epcis:epcisBody",
     "queryResults": "epcis:queryResults",
