@@ -5,6 +5,7 @@
     "epcis": "https://ref.gs1.org/epcis/",
     "cbv": "https://ref.gs1.org/cbv/",
     "gs1": "https://gs1.org/voc/",
+    "cbvmda": "urn:epcglobal:cbv:mda:",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -249,10 +250,7 @@
       "@id": "epcis:bizTransactionList",
       "@container": "@set",
       "@context": {
-        "bizTransaction": {
-          "@id": "@id",
-          "@type": "@id"
-        },
+        "bizTransaction": "@id",
         "type": {
           "@id": "epcis:bizTransactionType",
           "@type": "@vocab",
