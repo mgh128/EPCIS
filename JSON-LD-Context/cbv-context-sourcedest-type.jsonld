@@ -1,0 +1,7 @@
+{
+    "@context": {
+        "owning_party": "cbv:SDT-owning_party",
+        "possessing_party": "cbv:SDT-possessing_party",
+        "location": "cbv:SDT-location"
+    }
+}

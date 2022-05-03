@@ -2,7 +2,8 @@
   "@context": {
     "@protected": true,
     "@version": 1.1,
-    "epcis": "https://ns.gs1.org/epcis/",
+    "epcis": "https://ref.gs1.org/epcis/",
+    "cbv": "https://ref.gs1.org/cbv/",
     "gs1": "https://gs1.org/voc/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
@@ -39,9 +40,6 @@
     },
     "bizStep": {
       "@context": {
-        "@protected": true,
-        "@version": 1.1,
-        "cbv": "https://ns.gs1.org/cbv/",
         "accepting": "cbv:BizStep-accepting",
         "arriving": "cbv:BizStep-arriving",
         "assembling": "cbv:BizStep-assembling",
@@ -89,9 +87,6 @@
     },
     "disposition": {
       "@context": {
-        "@protected": true,
-        "@version": 1.1,
-        "cbv": "https://ns.gs1.org/cbv/",
         "active": "cbv:Disp-active",
         "available": "cbv:Disp-available",
         "completeness_verified": "cbv:Disp-completeness_verified",
@@ -149,63 +144,46 @@
     "sourceList": {
       "@id": "epcis:sourceList",
       "@container": "@set",
-      "@context": [
-        {
-          "@protected": true,
-          "@version": 1.1,
-          "cbv": "https://ns.gs1.org/cbv/",
-          "owning_party": "cbv:SDT-owning_party",
-          "possessing_party": "cbv:SDT-possessing_party",
-          "location": "cbv:SDT-location"
+      "@context": {
+        "source": {
+          "@id": "epcis:sourceOrDestination",
+          "@type": "@id"
         },
-        {
-          "@protected": true,
-          "epcis": "https://ns.gs1.org/epcis/",
-          "source": {
-            "@id": "epcis:sourceOrDestination",
-            "@type": "@id"
-          },
-          "type": {
-            "@id": "epcis:sourceOrDestinationType",
-            "@type": "@vocab"
+        "type": {
+          "@id": "epcis:sourceOrDestinationType",
+          "@type": "@vocab",
+          "@context": {
+            "owning_party": "cbv:SDT-owning_party",
+            "possessing_party": "cbv:SDT-possessing_party",
+            "location": "cbv:SDT-location"
           }
         }
-      ]
+      }
     },
     "destinationList": {
       "@id": "epcis:destinationList",
       "@container": "@set",
-      "@context": [
-        {
-          "@protected": true,
-          "@version": 1.1,
-          "cbv": "https://ns.gs1.org/cbv/",
-          "owning_party": "cbv:SDT-owning_party",
-          "possessing_party": "cbv:SDT-possessing_party",
-          "location": "cbv:SDT-location"
+      "@context": {
+        "destination": {
+          "@id": "epcis:sourceOrDestination",
+          "@type": "@id"
         },
-        {
-          "@protected": true,
-          "epcis": "https://ns.gs1.org/epcis/",
-          "destination": {
-            "@id": "epcis:sourceOrDestination",
-            "@type": "@id"
-          },
-          "type": {
-            "@id": "epcis:sourceOrDestinationType",
-            "@type": "@vocab"
+        "type": {
+          "@id": "epcis:sourceOrDestinationType",
+          "@type": "@vocab",
+          "@context": {
+            "owning_party": "cbv:SDT-owning_party",
+            "possessing_party": "cbv:SDT-possessing_party",
+            "location": "cbv:SDT-location"
           }
         }
-      ]
+      }
     },
     "persistentDisposition": {
       "@id": "epcis:persistentDisposition",
       "@container": "@set",
       "@context": [
         {
-          "@protected": true,
-          "@version": 1.1,
-          "cbv": "https://ns.gs1.org/cbv/",
           "active": "cbv:Disp-active",
           "available": "cbv:Disp-available",
           "completeness_verified": "cbv:Disp-completeness_verified",
@@ -241,8 +219,6 @@
           "unknown": "cbv:Disp-unknown"
         },
         {
-          "@protected": true,
-          "epcis": "https://ns.gs1.org/epcis/",
           "set": {
             "@id": "epcis:set",
             "@type": "@vocab",
@@ -272,38 +248,31 @@
     "bizTransactionList": {
       "@id": "epcis:bizTransactionList",
       "@container": "@set",
-      "@context": [
-        {
-          "@protected": true,
-          "epcis": "https://ns.gs1.org/epcis/",
-          "bizTransaction": {
-            "@id": "@id",
-            "@type": "@id"
-          },
-          "type": {
-            "@id": "epcis:bizTransactionType",
-            "@type": "@vocab",
-            "@context": {
-				  "@protected": true,
-				  "@version": 1.1,
-				  "cbv": "https://ns.gs1.org/cbv/",
-				  "bol": "cbv:BTT-bol",
-				  "cert": "cbv:BTT-cert",
-				  "desadv": "cbv:BTT-desadv",
-				  "inv": "cbv:BTT-inv",
-				  "pedigree": "cbv:BTT-pedigree",
-				  "po": "cbv:BTT-po",
-				  "poc": "cbv:BTT-poc",
-				  "prodorder": "cbv:BTT-prodorder",
-				  "recadv": "cbv:BTT-recadv",
-				  "rma": "cbv:BTT-rma",
-				  "testprd": "cbv:BTT-testprd",
-				  "testres": "cbv:BTT-testres",
-				  "upevt": "cbv:BTT-upevt"
-				}
+      "@context": {
+        "bizTransaction": {
+          "@id": "@id",
+          "@type": "@id"
+        },
+        "type": {
+          "@id": "epcis:bizTransactionType",
+          "@type": "@vocab",
+          "@context": {
+            "bol": "cbv:BTT-bol",
+            "cert": "cbv:BTT-cert",
+            "desadv": "cbv:BTT-desadv",
+            "inv": "cbv:BTT-inv",
+            "pedigree": "cbv:BTT-pedigree",
+            "po": "cbv:BTT-po",
+            "poc": "cbv:BTT-poc",
+            "prodorder": "cbv:BTT-prodorder",
+            "recadv": "cbv:BTT-recadv",
+            "rma": "cbv:BTT-rma",
+            "testprd": "cbv:BTT-testprd",
+            "testres": "cbv:BTT-testres",
+            "upevt": "cbv:BTT-upevt"
           }
         }
-      ]
+      }
     },
     "parentID": {
       "@id": "epcis:parentID",
@@ -340,8 +309,6 @@
       "@id": "epcis:sensorElementList",
       "@container": "@set",
       "@context": {
-        "@protected": true,
-        "epcis": "https://ns.gs1.org/epcis/",
         "deviceID": {
           "@id": "epcis:deviceID",
           "@type": "@id"
@@ -366,8 +333,6 @@
         "sensorMetadata": {
           "@id": "epcis:sensorMetadata",
           "@context": {
-            "@protected": true,
-            "epcis": "https://ns.gs1.org/epcis/",
             "startTime": {
               "@id": "epcis:startTime",
               "@type": "xsd:dateTimeStamp"
@@ -385,18 +350,13 @@
         "sensorReport": {
           "@id": "epcis:sensorReport",
           "@context": {
-            "@protected": true,
-            "epcis": "https://ns.gs1.org/epcis/",
             "type": {
               "@context": {
-                "@protected": true,
-                "@version": 1.1,
-                "gs1": "https://gs1.org/voc/",
                 "AbsoluteHumidity": "gs1:AbsoluteHumidity",
                 "AbsorbedDose": "gs1:AbsorbedDose",
                 "AbsorbedDoseRate": "gs1:AbsorbedDoseRate",
                 "Acceleration": "gs1:Acceleration",
-                "Activity": "gs1:Activity",
+                "Radioactivity": "gs1:Radioactivity",
                 "Altitude": "gs1:Altitude",
                 "AmountOfSubstance": "gs1:AmountOfSubstance",
                 "AmountOfSubstancePerUnitVolume": "gs1:AmountOfSubstancePerUnitVolume",
@@ -470,9 +430,6 @@
             },
             "exception": {
               "@context": {
-                "@protected": true,
-                "@version": 1.1,
-                "gs1": "https://gs1.org/voc/",
                 "ALARM_CONDITION": "gs1:ALARM_CONDITION",
                 "ERROR_CONDITION": "gs1:ERROR_CONDITION"
               },
@@ -501,9 +458,6 @@
             },
             "component": {
               "@context": {
-                "@protected": true,
-                "@version": 1.1,
-                "cbv": "https://ns.gs1.org/cbv/",
                 "x": "cbv:Comp-x",
                 "y": "cbv:Comp-y",
                 "z": "cbv:Comp-z",
@@ -565,32 +519,25 @@
     },
     "errorDeclaration": {
       "@id": "epcis:errorDeclaration",
-      "@context": [
-        {
-          "@protected": true,
-          "@version": 1.1,
-          "cbv": "https://ns.gs1.org/cbv/",
-          "did_not_occur": "cbv:ER-did_not_occur",
-          "incorrect_data": "cbv:ER-incorrect_data"
-        },
-        {
-          "@protected": true,
-          "epcis": "https://ns.gs1.org/epcis/",
-          "reason": {
-            "@id": "epcis:reason",
-            "@type": "@vocab"
-          },
-          "correctiveEventIDs": {
-            "@id": "epcis:correctiveEventIDs",
-            "@type": "@id",
-            "@container": "@set"
-          },
-          "declarationTime": {
-            "@id": "epcis:declarationTime",
-            "@type": "xsd:dateTimeStamp"
+      "@context": {
+        "reason": {
+          "@id": "epcis:reason",
+          "@type": "@vocab",
+          "@context": {
+            "did_not_occur": "cbv:ER-did_not_occur",
+            "incorrect_data": "cbv:ER-incorrect_data"
           }
+        },
+        "correctiveEventIDs": {
+          "@id": "epcis:correctiveEventIDs",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "declarationTime": {
+          "@id": "epcis:declarationTime",
+          "@type": "xsd:dateTimeStamp"
         }
-      ]
+      }
     },
     "eventID": "@id",
     "creationDate": {
